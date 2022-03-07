@@ -1,22 +1,30 @@
 from pickle import TRUE
 import random
+from re import S
 
-print("WELCOME TO THE POKEMON ARENA \n")
+print(" \n WELCOME TO THE POKEMON ARENA \n")
 
 play = True
+
 
 def pokemon_battle(): 
     #POKEMON STATS
     ps_squirtle = 18
     ps_charmender = 14
+    print("""You can choose between:
+            
+            CHARMENDER                                SQUIRTLE
+        HP      |       ATTACKS                   HP      |       ATTACKS
+        14      |       Scratch (4, 50%)          18      |       Bubble (3, 90%) 
+                |       Flamethrower (5, 50%)             |       Idropump (10, 10%) \n""")
     #POKEMON SELECTION 
     pokemon = input("Do you want Charmender or Squirtle? ")
 
-    if (pokemon) == "c":
+    if (pokemon) == "C":
         pokemon = "Charmender"
         print("\n You have chosen Charmender \n")
 
-    if (pokemon) == "s" :
+    if (pokemon) == "S" :
         pokemon = "Squirtle"
         print("\n You have chosen Squirtle \n")
 
@@ -66,7 +74,7 @@ def pokemon_battle():
 while play:
     pokemon_battle()
 
-    #PLAY AGAIN?
+    #PLAY AGAIN? QUALCHE ERRORE QUANDO SI CAMBIA POKEMON
     again = str(input("Do you want to play again (Y/N)? "))
     if again == "N":
         print("Thank you and goodbye! \n")
@@ -74,3 +82,4 @@ while play:
     else:
         pokemon_battle()  
 
+#AGGIUNGERE CONTATORE VITTORIE/SCONFITTE
