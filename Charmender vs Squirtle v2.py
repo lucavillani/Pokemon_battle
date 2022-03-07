@@ -1,11 +1,12 @@
 import random
 
-#STATS
-strenght_squirtle = 3
-ps_squirtle = 15
 
-strenght_charmender = 4
-ps_charmender = 12
+#STATS
+ps_squirtle = 18
+ps_charmender = 14
+
+
+print("WELCOME TO THE POKEMON ARENA \n")
 
 #POKEMON SELECTION
 pokemon = input("Do you want Charmender or Squirtle? ")
@@ -21,14 +22,30 @@ if (pokemon) == "s" :
 print("TIME TO FIGHT!!! \n")
 
 #BATTLE
-while (ps_squirtle) > 1 and (ps_charmender) > 1:
-    turn =  (random.randint(1,10))  
+while (ps_squirtle) >= 1 and (ps_charmender) >= 1:
+    turn = (random.randint(1,10))  
+    
     if (turn) > 5 :
-        ps_squirtle = ps_squirtle - strenght_charmender
-        print("Charmender (", ps_charmender, ") attacks Squirtle (", ps_squirtle, ") \n")
+        attack_type_charmender = (random.randint(1,10)) 
+        if (attack_type_charmender) > 5 :
+            attack_strenght_charmender = 5
+            attack_name_charmender = "Flamethrower"
+        if (attack_type_charmender) <= 5 :
+            attack_strenght_charmender = 4
+            attack_name_charmender = "Scratch"
+        ps_squirtle = ps_squirtle - attack_strenght_charmender
+        print("Charmender uses", attack_name_charmender, "--> Squirtle loses", attack_strenght_charmender,"ps           Charmender:", ps_charmender, "ps | Squirtle:", ps_squirtle, "ps \n")
+    
     if (turn) <= 5 :
-        ps_charmender = ps_charmender - strenght_squirtle
-        print("Squirtle (",ps_squirtle, ") attacks Charmender (", ps_charmender,") \n")
+        attack_type_squirtle = (random.randint(1,10)) 
+        if (attack_type_squirtle) > 9 :
+            attack_strenght_squirtle = 10
+            attack_name_squirtle = "Idropump"
+        if (attack_type_squirtle) <= 9 :
+            attack_strenght_squirtle = 3
+            attack_name_squirtle = "Bubble"
+        ps_charmender = ps_charmender - attack_strenght_squirtle
+        print("Squirtle uses", attack_name_squirtle, "--> Charmender loses", attack_strenght_squirtle,"ps            Charmender:", ps_charmender, "ps | Squirtle:", ps_squirtle, "ps \n")
 
 #DECLARING VICTORY
 if (ps_squirtle) < 1:
