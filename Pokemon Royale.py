@@ -2,110 +2,92 @@ from pickle import TRUE
 import random
 from re import S
 
-print(" \n WELCOME TO THE POKEMON ARENA \n")
-
 play = True
 
-def pokemon_battle(): 
+#STATS
+hp_charmender = 14
+scratch = ["Scratch", 4]
+flamethrower = ["Flamethrower", 5]
+attacks_charmender = [scratch, flamethrower]
+attack_probability_charmender = [60, 40]
+charmender = ["Charmender", hp_charmender, attacks_charmender, attack_probability_charmender]
 
-    #POKEMON STATS
-    ps_squirtle = 18
-    ps_charmender = 14
-    print("""You can choose between:
-            
-            CHARMENDER                                SQUIRTLE
-        HP      |       ATTACKS                   HP      |       ATTACKS
-        14      |       Scratch (4, 50%)          18      |       Bubble (3, 90%) 
-                |       Flamethrower (5, 50%)             |       Idropump (10, 10%) \n""")
-    #POKEMON SELECTION 
-    pokemon_player = input("Which Pokemon do you want to choose? ")
+hp_squirtle = 18
+bubble = ["Bubble", 3]
+idropump = ["Idropump", 10]
+attacks_squirtle = [bubble, idropump]
+attack_probability_squirtle = [90, 10]
+squirtle = ["Squirtle", hp_squirtle, attacks_squirtle, attack_probability_squirtle]
 
-    if (pokemon_player) == "C":
-        pokemon_player = "Charmender"
-        pokemon_opponent = (random.randint(1,10)) 
-        if pokemon_opponent > 5:
-            pokemon_opponent = "Bulbasaur"
-        if pokemon_opponent <= 5:
-            pokemon_opponent = "Squirtle"
-        print("\n You have chosen", pokemon_player, "\n")
-        print("Your opponent has chosen", pokemon_opponent, "\n")
+hp_bulbasaur = 16
+tackle = ["Tackle", 3]
+razor_leaf = ["Razor Leaf", 7]
+attacks_bulbasaur = [tackle, razor_leaf]
+attack_probability_bulbasaur = [70, 30]
+bulbasaur = ["Bulbasaur", hp_bulbasaur, attacks_bulbasaur, attack_probability_bulbasaur]
 
-    if (pokemon_player) == "S" :
-        pokemon_player = "Squirtle"
-        pokemon_opponent = (random.randint(1,10)) 
-        if pokemon_opponent > 5:
-            pokemon_opponent = "Bulbasaur"
-        if pokemon_opponent <= 5:
-            pokemon_opponent = "Charmender"
-        print("\n You have chosen", pokemon_player, "\n")
-        print("Your opponent has chosen", pokemon_opponent, "\n")
+pokemon = (charmender, squirtle, bulbasaur)
+pokemon_player = pokemon
+pokemon_opponent = pokemon
+turn = [0,1]
 
-    if (pokemon_player) == "B":
-        pokemon_player = "Bulbasaur"
-        pokemon_opponent = (random.randint(1,10)) 
-        if pokemon_opponent > 5:
-            pokemon_opponent = "Bulbasaur"
-        if pokemon_opponent <= 5:
-            pokemon_opponent = "Charmender"
-        print("\n You have chosen", pokemon_player, "\n")
-        print("Your opponent has chosen", pokemon_opponent, "\n")
+
+
+def pokemon_selection():
+
+    print(" \n WELCOME TO THE POKEMON ARENA \n")
+    
+    pokemon_choice = input("Which Pokemon do you want to choose? ") 
+    if (pokemon_choice) == "C":
+        pokemon_player = pokemon[0]
+    elif (pokemon_choice) == "S":
+        pokemon_player = pokemon[1]
+    elif (pokemon_choice) == "B":
+        pokemon_player = pokemon[2]
+    pokemon_opponent = random.choice(pokemon)
+    while pokemon_opponent == pokemon_player:
+        pokemon_opponent = random.choice(pokemon)
+        
+
+    print("\nYou have chosen", pokemon_player[0], "\n")
+    print("Your opponent has chosen", pokemon_opponent[0], "\n")
 
     print("TIME TO FIGHT!!! \n")
-
-    if pokemon_player = bulbasaur
-
-    #BATTLE
-    while (ps_squirtle) >= 1 and (ps_charmender) >= 1:
-        turn = (random.randint(1,10))  
-        
-        if (turn) > 5 :
-            attack_type_charmender = (random.randint(1,10)) 
-            if (attack_type_charmender) > 5 :
-                attack_strenght_charmender = 5
-                attack_name_charmender = "Flamethrower"
-            if (attack_type_charmender) <= 5 :
-                attack_strenght_charmender = 4
-                attack_name_charmender = "Scratch"
-            ps_squirtle = ps_squirtle - attack_strenght_charmender
-            print("Charmender uses", attack_name_charmender, "--> Squirtle loses", attack_strenght_charmender,"ps           Charmender:", ps_charmender, "ps | Squirtle:", ps_squirtle, "ps \n")
-        
-        if (turn) <= 5 :
-            attack_type_squirtle = (random.randint(1,10)) 
-            if (attack_type_squirtle) > 9 :
-                attack_strenght_squirtle = 10
-                attack_name_squirtle = "Idropump"
-            if (attack_type_squirtle) <= 9 :
-                attack_strenght_squirtle = 3
-                attack_name_squirtle = "Bubble"
-            ps_charmender = ps_charmender - attack_strenght_squirtle
-            print("Squirtle uses", attack_name_squirtle, "--> Charmender loses", attack_strenght_squirtle,"ps            Charmender:", ps_charmender, "ps | Squirtle:", ps_squirtle, "ps \n")
-
-    #DECLARING VICTORY
-    if (ps_squirtle) < 1:
-        print("Squirtle is dead \n")
-        if (pokemon_player) == "Squirtle":
-            print("YOU LOST \n")
-        if (pokemon_player) == "Charmender": 
-            print("YOU WON \n")
-
-
-    if (ps_charmender) < 1:
-        print("Charmender is dead \n")
-        if (pokemon_player) == "Charmender":
-            print("YOU LOST \n")
-        if (pokemon_player) == "Squirtle":
-            print("YOU WON \n")
     
+    
+#BATTLE
+    while (pokemon_player[1]) >= 1 and (pokemon_opponent[1]) >= 1:
+        current_turn = (random.choice(turn))
+
+        if (current_turn) == 0:
+            attacking_pokemon = pokemon_player
+            defending_pokemon = pokemon_opponent
+        else:
+            attacking_pokemon = pokemon_opponent
+            defending_pokemon = pokemon_player
+
+
+        attack = (random.choices(attacking_pokemon[2], weights=(attacking_pokemon[3]), k=1))
+        print(attacking_pokemon[0], "uses",(attack[0][0]), "\n")
+        #attack = str(attack).replace("[","").replace("]","")
+        defending_pokemon[1] = defending_pokemon[1] - int((attack[0][1]))
+        print(defending_pokemon[0], "loses", int((attack[0][1])), "ps")
+
+    if (pokemon_player[1]) < 1:
+        print(pokemon_player[0],"is dead \n")
+        print("YOU LOST \n")
+
+    if (pokemon_opponent[1]) < 1:
+        print(pokemon_opponent[0],"is dead \n")
+        print("YOU WON \n")
 
 while play:
-    pokemon_battle()
+    pokemon_selection()
 
-    #PLAY AGAIN?
+    #PLAY AGAIN? - NON SI RESETTANO I PS DEI POKEMON. CAMBIARE POKEMON OPPONENT CON POKEMON DIFENDING?
     again = str(input("Do you want to play again (Y/N)? "))
     if again == "N":
         print("Thank you and goodbye! \n")
         play = False
     else:
         play = True 
-
-#AGGIUNGERE CONTATORE VITTORIE/SCONFITTE
