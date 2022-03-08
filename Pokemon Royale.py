@@ -18,17 +18,41 @@ def pokemon_battle():
         14      |       Scratch (4, 50%)          18      |       Bubble (3, 90%) 
                 |       Flamethrower (5, 50%)             |       Idropump (10, 10%) \n""")
     #POKEMON SELECTION 
-    pokemon = input("Do you want Charmender or Squirtle? ")
+    pokemon_player = input("Which Pokemon do you want to choose? ")
 
-    if (pokemon) == "C":
-        pokemon = "Charmender"
-        print("\n You have chosen Charmender \n")
+    if (pokemon_player) == "C":
+        pokemon_player = "Charmender"
+        pokemon_opponent = (random.randint(1,10)) 
+        if pokemon_opponent > 5:
+            pokemon_opponent = "Bulbasaur"
+        if pokemon_opponent <= 5:
+            pokemon_opponent = "Squirtle"
+        print("\n You have chosen", pokemon_player, "\n")
+        print("Your opponent has chosen", pokemon_opponent, "\n")
 
-    if (pokemon) == "S" :
-        pokemon = "Squirtle"
-        print("\n You have chosen Squirtle \n")
+    if (pokemon_player) == "S" :
+        pokemon_player = "Squirtle"
+        pokemon_opponent = (random.randint(1,10)) 
+        if pokemon_opponent > 5:
+            pokemon_opponent = "Bulbasaur"
+        if pokemon_opponent <= 5:
+            pokemon_opponent = "Charmender"
+        print("\n You have chosen", pokemon_player, "\n")
+        print("Your opponent has chosen", pokemon_opponent, "\n")
+
+    if (pokemon_player) == "B":
+        pokemon_player = "Bulbasaur"
+        pokemon_opponent = (random.randint(1,10)) 
+        if pokemon_opponent > 5:
+            pokemon_opponent = "Bulbasaur"
+        if pokemon_opponent <= 5:
+            pokemon_opponent = "Charmender"
+        print("\n You have chosen", pokemon_player, "\n")
+        print("Your opponent has chosen", pokemon_opponent, "\n")
 
     print("TIME TO FIGHT!!! \n")
+
+    if pokemon_player = bulbasaur
 
     #BATTLE
     while (ps_squirtle) >= 1 and (ps_charmender) >= 1:
@@ -59,17 +83,17 @@ def pokemon_battle():
     #DECLARING VICTORY
     if (ps_squirtle) < 1:
         print("Squirtle is dead \n")
-        if (pokemon) == "Squirtle":
+        if (pokemon_player) == "Squirtle":
             print("YOU LOST \n")
-        if (pokemon) == "Charmender": 
+        if (pokemon_player) == "Charmender": 
             print("YOU WON \n")
 
 
     if (ps_charmender) < 1:
         print("Charmender is dead \n")
-        if (pokemon) == "Charmender":
+        if (pokemon_player) == "Charmender":
             print("YOU LOST \n")
-        if (pokemon) == "Squirtle":
+        if (pokemon_player) == "Squirtle":
             print("YOU WON \n")
     
 
