@@ -4,7 +4,7 @@ from re import S
 
 play = True
 
-#STATS
+#POKEMON STATS
 hp_charmender = 14
 scratch = ["Scratch", 4]
 flamethrower = ["Flamethrower", 5]
@@ -33,10 +33,12 @@ turn = [0,1]
 
 
 
-def pokemon_selection():
+def pokemon_royale():
 
+    #WELCOME
     print(" \n WELCOME TO THE POKEMON ARENA \n")
-    
+
+    #POKEMON SELECTION
     pokemon_choice = input("Which Pokemon do you want to choose? ") 
     if (pokemon_choice) == "C":
         pokemon_player = pokemon[0]
@@ -48,15 +50,14 @@ def pokemon_selection():
     while pokemon_opponent == pokemon_player:
         pokemon_opponent = random.choice(pokemon)
         
-
     print("\nYou have chosen", pokemon_player[0], "\n")
     print("Your opponent has chosen", pokemon_opponent[0], "\n")
 
     print("TIME TO FIGHT!!! \n")
     
-    
-#BATTLE
     while (pokemon_player[1]) >= 1 and (pokemon_opponent[1]) >= 1:
+        
+        #ESTABLISHING ATTACKING TURNS  
         current_turn = (random.choice(turn))
 
         if (current_turn) == 0:
@@ -66,13 +67,12 @@ def pokemon_selection():
             attacking_pokemon = pokemon_opponent
             defending_pokemon = pokemon_player
 
-
+        #BATTLE
         attack = (random.choices(attacking_pokemon[2], weights=(attacking_pokemon[3]), k=1))
-        print(attacking_pokemon[0], "uses",(attack[0][0]), "\n")
-        #attack = str(attack).replace("[","").replace("]","")
         defending_pokemon[1] = defending_pokemon[1] - int((attack[0][1]))
-        print(defending_pokemon[0], "loses", int((attack[0][1])), "ps")
+        print(attacking_pokemon[0], "uses",(attack[0][0]), "--->",defending_pokemon[0], "loses", int((attack[0][1])), "ps       ", pokemon_player[0][0:4].upper(),pokemon_player[1],"|", pokemon_opponent[0][0:4].upper(),pokemon_opponent[1], "\n")
 
+    #DECLARING VICTORY
     if (pokemon_player[1]) < 1:
         print(pokemon_player[0],"is dead \n")
         print("YOU LOST \n")
@@ -81,10 +81,12 @@ def pokemon_selection():
         print(pokemon_opponent[0],"is dead \n")
         print("YOU WON \n")
 
-while play:
-    pokemon_selection()
 
-    #PLAY AGAIN? - NON SI RESETTANO I PS DEI POKEMON. CAMBIARE POKEMON OPPONENT CON POKEMON DIFENDING?
+#GAME LOOP
+while play:
+    pokemon_royale()
+
+    #PLAY AGAIN? - CURRENTLY NOT RESETTING POKEMON'S HP
     again = str(input("Do you want to play again (Y/N)? "))
     if again == "N":
         print("Thank you and goodbye! \n")
